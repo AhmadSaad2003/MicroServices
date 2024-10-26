@@ -26,10 +26,10 @@ Document.init(
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    createdBy: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      references: {
+        model: "users",
+        key: "id",
+      },
     },
     title: {
       type: DataTypes.TEXT,
@@ -42,7 +42,7 @@ Document.init(
     creationDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW, // Default to the current date and time
+      defaultValue: DataTypes.NOW,
     },
   },
   {
