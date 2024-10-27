@@ -11,10 +11,10 @@ const { deletDocumentById } = require("../controllers/documentController");
 
 router.post("/create", authMiddleware, createDocument);
 
-router.put("/edit/:documentId", editDocument);
+router.put("/edit/:documentId", authMiddleware, editDocument);
 
-router.get("/getDocuments", getAllDocumentsWithTitlesAndAuthors);
+router.get("/getDocuments", authMiddleware, getAllDocumentsWithTitlesAndAuthors);
 
-router.post("/delete/:documentId", deletDocumentById);
+router.post("/delete/:documentId", authMiddleware, deletDocumentById);
 
 module.exports = router;

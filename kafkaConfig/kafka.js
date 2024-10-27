@@ -1,3 +1,4 @@
+// kafka.js
 const { Kafka } = require("kafkajs");
 
 const kafka = new Kafka({
@@ -8,7 +9,7 @@ const kafka = new Kafka({
 const producer = kafka.producer();
 const consumer = kafka.consumer({ groupId: 'collaborative-editors-group' });
 
-const initKafka = async () => {
+const initKafka = async (io) => { // Pass io to handle WebSocket emissions
     await producer.connect();
     console.log("Kafka Producer connected");
     
@@ -21,7 +22,7 @@ const initKafka = async () => {
         eachMessage: async ({ topic, partition, message }) => {
             const edit = JSON.parse(message.value.toString());
             // Emit the edit to all connected clients through WebSocket
-            io.emit('documentUpdate', edit);
+            io.emit('documentUpdate', edit); // Ensure io is available here
         },
     });
 };
@@ -35,4 +36,4 @@ const sendEdit = async (edit) => {
     });
 };
 
-module.exports = { initKafka, sendEdit };
+module.exports = { initKafka, sendEdit, producer, consumer };
