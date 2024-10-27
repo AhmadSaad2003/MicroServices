@@ -1,8 +1,23 @@
 // models/VersionControl.js
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/db.js"); // Adjust the path according to your project structure
+const sequelize = require("../config/db.js");
 
-class VersionControl extends Model {}
+class VersionControl extends Model {
+  static associate(models) {
+    VersionControl.belongsTo(models.Document, {
+      foreignKey: "documentId",
+      targetKey: "id",
+      onDelete: "CASCADE", // Ensure VersionControl records are deleted when Document is deleted
+      onUpdate: "CASCADE",
+    });
+    VersionControl.belongsTo(models.User, {
+      foreignKey: "userId",
+      targetKey: "id",
+      onDelete: "CASCADE", // Ensure VersionControl records are deleted when User is deleted
+      onUpdate: "CASCADE",
+    });
+  }
+}
 
 VersionControl.init(
   {
@@ -15,17 +30,19 @@ VersionControl.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "documents", // This should match the table name defined in the Document model
+        model: "documents",
         key: "id",
       },
+      onDelete: "CASCADE",
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "users", // This should match the table name defined in the User model
+        model: "users",
         key: "id",
       },
+      onDelete: "CASCADE",
     },
     version: {
       type: DataTypes.INTEGER,
@@ -47,7 +64,7 @@ VersionControl.init(
   {
     sequelize,
     modelName: "VersionControl",
-    tableName: "version_controls", // This will create a version_controls table
+    tableName: "version_controls",
   }
 );
 

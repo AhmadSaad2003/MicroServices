@@ -1,28 +1,28 @@
 const VersionControl = require("../models/versionControl"); // Import the VersionControl model
 const Document = require("../models/Document"); // Import the Document model
 
-// Create a new document version
-exports.createVersion = async (req, res) => {
-    const { documentId, userId, title, content } = req.body;
+// // Create a new document version
+// exports.createVersion = async (req, res) => {
+//     const { documentId, userId, title, content } = req.body;
 
-    try {
-        // Get the current version count for the document
-        const currentVersionCount = await VersionControl.count({
-            where: { documentId },
-        });
+//     try {
+//         // Get the current version count for the document
+//         const currentVersionCount = await VersionControl.count({
+//             where: { documentId },
+//         });
 
-        const newVersion = await VersionControl.create({
-            documentId,
-            userId,
-            version: currentVersionCount + 1, // Incrementing version number
-            title,
-            content,
-        });
-        res.status(201).json({ message: "New version created", version: newVersion });
-    } catch (error) {
-        res.status(500).json({ message: "Error creating version", error: error.message });
-    }
-};
+//         const newVersion = await VersionControl.create({
+//             documentId,
+//             userId,
+//             version: currentVersionCount + 1, // Incrementing version number
+//             title,
+//             content,
+//         });
+//         res.status(201).json({ message: "New version created", version: newVersion });
+//     } catch (error) {
+//         res.status(500).json({ message: "Error creating version", error: error.message });
+//     }
+// };
 
 // Get document version history
 exports.getVersionHistory = async (req, res) => {
@@ -41,7 +41,7 @@ exports.getVersionHistory = async (req, res) => {
 
 // Revert to a previous document version
 exports.revertVersion = async (req, res) => {
-    const { documentId, versionId, userId } = req.body;
+    const { documentId, versionId} = req.body;
 
     try {
         const versionToRevert = await VersionControl.findByPk(versionId);

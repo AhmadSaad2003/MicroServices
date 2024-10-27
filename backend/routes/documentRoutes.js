@@ -11,8 +11,6 @@ const { deletDocumentById } = require("../controllers/documentController");
 
 router.post("/create", authMiddleware, createDocument);
 
-router.put("/edit/:documentId", authMiddleware, editDocument);
-
 router.get("/getDocuments", authMiddleware, getAllDocumentsWithTitlesAndAuthors);
 
 router.post("/delete/:documentId", authMiddleware, deletDocumentById);

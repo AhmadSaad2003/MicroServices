@@ -3,7 +3,7 @@ const { Kafka } = require("kafkajs");
 
 const kafka = new Kafka({
     clientId: 'collaborative-editor',
-    brokers: ['localhost:9092'], // Adjust according to your Kafka setup
+    brokers: ['localhost:9093'], // Adjust according to your Kafka setup
 });
 
 const producer = kafka.producer();
@@ -12,7 +12,7 @@ const consumer = kafka.consumer({ groupId: 'collaborative-editors-group' });
 const initKafka = async (io) => { // Pass io to handle WebSocket emissions
     await producer.connect();
     console.log("Kafka Producer connected");
-    
+
     await consumer.connect();
     console.log("Kafka Consumer connected");
 

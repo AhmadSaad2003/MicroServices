@@ -36,7 +36,7 @@ exports.createDocument = async (req, res) => {
 exports.getAllDocumentsWithTitlesAndAuthors = async (req, res) => {
   try {
     const documents = await Document.findAll({
-      attributes: ["title", "createdBy"],
+      attributes: ["title", "content"],
     });
 
     res.status(200).json({ documents });
