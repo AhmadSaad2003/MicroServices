@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Document = require("../models/Document");
+const VersionControl = require("../models/versionControl");
 
 exports.editDocument = async (req, res) => {
   try {
@@ -8,7 +9,6 @@ exports.editDocument = async (req, res) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.id;
-    const username = decoded.username;
 
     const { documentId } = req.params;
     const { content } = req.body;
@@ -30,6 +30,20 @@ exports.editDocument = async (req, res) => {
     document.content = content;
     document.creationDate = new Date();
     await document.save();
+
+    const versionCount = await VersionControl.count({
+      where: { documentId: document.id },
+    });
+    const newVersion = versionCount + 1;
+
+    const versionControl = await VersionControl.create({
+      version: newVersion,
+      title: document.title,
+      documentId: document.id,
+      userId: userId,
+      content,
+      createdAt: new Date(),
+    });
 
     res
       .status(200)

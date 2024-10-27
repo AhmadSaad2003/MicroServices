@@ -1,34 +1,35 @@
-const jwt = require("jsonwebtoken");
 const Document = require("../models/Document");
+const VersionControl = require("../models/versionControl");
 
 exports.createDocument = async (req, res) => {
   try {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) return res.status(403).json({ message: "Token required" });
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const userId = decoded.id;
-    const username = decoded.username;
     const { content, title } = req.body;
     if (!content || !title) {
       return res
         .status(400)
         .json({ message: "Content and title are required" });
     }
-
-    const newDocument = await Document.create({
-      userId,
-      createdBy: username,
+    const document = await Document.create({
+      userId: req.userId,
       title,
       content,
       creationDate: new Date(),
     });
+
+    const versionControl = await VersionControl.create({
+      version: 1,
+      title: document.title,
+      documentId: document.id,
+      userId: req.userId,
+      content,
+      createdAt: new Date(),
+    });
+
     res.status(201).json({
-      message: "Document created successfully",
-      document: newDocument,
+      message: "Version entry created successfully",
     });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 

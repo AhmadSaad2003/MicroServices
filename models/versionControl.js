@@ -31,10 +31,6 @@ VersionControl.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    createdBy: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     title: {
       type: DataTypes.TEXT,
       allowNull: false,
