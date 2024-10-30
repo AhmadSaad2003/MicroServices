@@ -1,0 +1,40 @@
+.dashboard {
+    text-align: center;
+    padding: 2rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.dashboard-button {
+    width: 300px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.dashboard-button:hover {
+    transform: scale(1.05);
+}
+
+.dashboard-button span {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
