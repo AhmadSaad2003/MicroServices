@@ -20,10 +20,10 @@ app.use(bodyParser.json());
 
 // Create HTTP server and Socket.IO server
 const server = http.createServer(app);
-//const io = new Server(server);
+const io = new Server(server);
 
 // Start Kafka
-//initKafka(io).catch(console.error); // Pass io to initKafka
+initKafka(io).catch(console.error); // Pass io to initKafka
 
 // *****************************************************************************************
 app.get("/", (req, res) => {
@@ -38,7 +38,7 @@ app.use("/api/colaborativeEditing", colabRoutes);
 app.use("/api/versionControl", versionControlRoutes);
 
 // Socket.IO connection handling
-/*io.on("connection", (socket) => {
+io.on("connection", (socket) => {
   console.log("A user connected");
 
   // Join a document room
@@ -58,7 +58,7 @@ app.use("/api/versionControl", versionControlRoutes);
     console.log("A user disconnected");
   });
 });
-*/
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, async () => {
