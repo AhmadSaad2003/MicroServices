@@ -1,0 +1,17 @@
+button {
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.ql-editor {
+    color: black;
+    /* Default text color */
+}

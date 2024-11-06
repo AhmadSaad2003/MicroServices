@@ -7,7 +7,6 @@ export const signIn = async (email: string, password: string) => {
       email,
       password,
     });
-    console.log(response);
 
     if (response.data.token) {
       localStorage.setItem("token", response.data.token);

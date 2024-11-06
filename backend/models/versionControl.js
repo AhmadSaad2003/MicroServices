@@ -1,4 +1,3 @@
-// models/VersionControl.js
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db.js");
 
@@ -7,13 +6,13 @@ class VersionControl extends Model {
     VersionControl.belongsTo(models.Document, {
       foreignKey: "documentId",
       targetKey: "id",
-      onDelete: "CASCADE", // Ensure VersionControl records are deleted when Document is deleted
+      onDelete: "CASCADE",
       onUpdate: "CASCADE",
     });
     VersionControl.belongsTo(models.User, {
       foreignKey: "userId",
       targetKey: "id",
-      onDelete: "CASCADE", // Ensure VersionControl records are deleted when User is deleted
+      onDelete: "CASCADE",
       onUpdate: "CASCADE",
     });
   }

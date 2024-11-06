@@ -1,13 +1,26 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
 .dashboard {
     text-align: center;
     padding: 2rem;
-}
+width: 100vw;
+    /* Full viewport width */height: 100vh;}
 
 .button-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 5.5rem;
 }
 
 .dashboard-button {
@@ -37,4 +50,9 @@
     background-color: rgba(0, 0, 0, 0.5);
     padding: 0.5rem 1rem;
     border-radius: 5px;
+}
+
+.title{
+    padding-top: 50px;
+padding-bottom: 200px;
 }

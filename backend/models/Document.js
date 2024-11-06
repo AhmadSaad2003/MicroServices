@@ -1,18 +1,17 @@
-// models/Document.js
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/db.js"); // Adjust the path according to your project structure
+const sequelize = require("../config/db.js");
 
 class Document extends Model {
   static associate(models) {
     Document.belongsTo(models.User, {
-      foreignKey: "userId", // Foreign key in Document table
-      targetKey: "id", // Target key in User table
-      onDelete: "CASCADE", // Ensures that deleting a user also deletes their documents
+      foreignKey: "userId",
+      targetKey: "id",
+      onDelete: "CASCADE",
     });
     Document.hasMany(models.VersionControl, {
       foreignKey: "documentId",
       sourceKey: "id",
-      onDelete: "CASCADE", // Ensures that deleting a document also deletes its versions
+      onDelete: "CASCADE",
     });
   }
 }
@@ -31,7 +30,7 @@ Document.init(
         model: "users",
         key: "id",
       },
-      onDelete: "CASCADE", // Ensures that deleting a user also deletes their documents
+      onDelete: "CASCADE",
     },
     title: {
       type: DataTypes.TEXT,
@@ -50,7 +49,7 @@ Document.init(
   {
     sequelize,
     modelName: "Document",
-    tableName: "documents", // This will create a documents table
+    tableName: "documents",
   }
 );
 

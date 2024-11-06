@@ -1,29 +1,31 @@
+import { useNavigate } from "react-router-dom";
 import "./dashboardView.css";
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
+      <h1 className="title">Dashboard</h1>
       <div className="button-container">
         <button
           className="dashboard-button"
-          style={{ backgroundImage: "url('/images/create-page.jpg')" }}
-          onClick={() => console.log("Create New Blank Page")}
+          style={{ backgroundImage: "url('./public/images/create.webp')" }}
+          onClick={() => navigate("/createView")}
         >
           <span>Create New Blank Page</span>
         </button>
-
         <button
           className="dashboard-button"
-          style={{ backgroundImage: "url('/images/edit-document.jpg')" }}
-          onClick={() => console.log("Edit Existing Document")}
+          style={{ backgroundImage: "url('./public/images/1.jpg')" }}
+          onClick={() => navigate("/editView")}
         >
           <span>Edit Existing Document</span>
         </button>
 
         <button
           className="dashboard-button"
-          style={{ backgroundImage: "url('/images/manage-versions.jpg')" }}
+          style={{ backgroundImage: "url('./public/images/images.jpeg')" }}
           onClick={() => console.log("Manage Versions")}
         >
           <span>Manage Versions</span>

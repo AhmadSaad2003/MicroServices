@@ -1,13 +1,11 @@
-// models/User.js
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/db.js"); // Adjust the path according to your project structure
+const sequelize = require("../config/db.js");
 
 class User extends Model {
   static associate(models) {
-    // Define association with Document
     User.hasMany(models.Document, {
-      foreignKey: "userId", // Foreign key in Document table
-      sourceKey: "id", // Source key in User table
+      foreignKey: "userId",
+      sourceKey: "id",
     });
     User.hasMany(models.VersionControl, {
       foreignKey: "userId",
@@ -41,7 +39,7 @@ User.init(
   {
     sequelize,
     modelName: "User",
-    tableName: "users", // This will create a users table
+    tableName: "users",
   }
 );
 

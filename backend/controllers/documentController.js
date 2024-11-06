@@ -1,5 +1,6 @@
 const Document = require("../models/Document");
 const VersionControl = require("../models/versionControl");
+const User = require("../models/User");
 
 exports.createDocument = async (req, res) => {
   try {
@@ -36,7 +37,11 @@ exports.createDocument = async (req, res) => {
 exports.getAllDocumentsWithTitlesAndAuthors = async (req, res) => {
   try {
     const documents = await Document.findAll({
-      attributes: ["title", "content"],
+      attributes: ["title", "content", "createdAt"],
+      include: {
+        model: User,
+        attributes: ["username"],
+      },
     });
 
     res.status(200).json({ documents });

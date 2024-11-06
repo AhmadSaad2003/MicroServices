@@ -8,6 +8,8 @@ import {
 
 import LoginPage from "./components/logInView";
 import Dashboard from "./components/dashboardView";
+import CreateView from "./components/createView";
+import EditView from "./components/editView";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/createView" element={<CreateView />} />
+        <Route path="/editView" element={<EditView />} />
       </Routes>
     </Router>
   );
