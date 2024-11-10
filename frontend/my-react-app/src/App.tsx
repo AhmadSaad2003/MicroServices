@@ -10,6 +10,9 @@ import LoginPage from "./components/logInView";
 import Dashboard from "./components/dashboardView";
 import CreateView from "./components/createView";
 import EditView from "./components/editView";
+import ProjectDetails from "./components/projectDetailsView";
+import ManageVersions from "./components/manageVersionsView";
+import Editing from "./components/editingView";
 
 function App() {
   return (
@@ -19,6 +22,14 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/createView" element={<CreateView />} />
         <Route path="/editView" element={<EditView />} />
+        <Route path="/project/:projectId" element={<ProjectDetails />} />
+
+        <Route
+          path="/manageVersions/:documentId"
+          element={<ManageVersions />}
+        />
+
+        <Route path="/editing/:documentId" element={<Editing />} />
       </Routes>
     </Router>
   );

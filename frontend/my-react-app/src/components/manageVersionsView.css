@@ -1,0 +1,69 @@
+/* Container for the entire manage versions section */
+.manage-versions-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Title for the manage versions section */
+.manage-versions-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Style for the table */
+.manage-versions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Table header styles */
+.manage-versions-table thead {
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+}
+
+.manage-versions-table th {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Table rows and cells styles */
+.manage-versions-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.manage-versions-table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect on rows */
+.manage-versions-table tbody tr:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+/* Loading text styling */
+.manage-versions-loading {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Error message styling */
+.manage-versions-error {
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}

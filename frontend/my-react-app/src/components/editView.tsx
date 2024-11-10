@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getAll } from "../services/getDocumentsService";
 import { Project } from "../interfaces/project";
 import "./editView.css";
+import { useNavigate } from "react-router-dom";
 
 const EditView: React.FC = () => {
+  const navigate = useNavigate();
+
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -37,17 +40,22 @@ const EditView: React.FC = () => {
   }, [projects]);
 
   if (loading) {
-    return <div>Loading projects...</div>;
+    return <div className="edit-view-loading">Loading projects...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="edit-view-error">{error}</div>;
   }
-
+  const handleVersions = (projectId: number) => {
+    navigate(`/manageVersions/${projectId}`);
+  };
+  const handleEditing = (projectId: number) => {
+    navigate(`/editing/${projectId}`);
+  };
   return (
-    <div>
-      <h2>Projects List</h2>
-      <table>
+    <div className="edit-view-container">
+      <h2 className="edit-view-title">Projects List</h2>
+      <table className="edit-view-table">
         <thead>
           <tr>
             <th>Title</th>
@@ -57,13 +65,17 @@ const EditView: React.FC = () => {
         </thead>
         <tbody>
           {projects.map((project, index) => (
-            <tr key={index}>
+            <tr key={project.id} style={{ cursor: "pointer" }}>
+              <td>{project.title}</td>
+              <td>{project.User.username}</td>
+              <td>{project.createdAt}</td>
               <td>
-                <button>{project.title}</button>
+                <button onClick={() => handleEditing(project.id)}> edit</button>
+                <button onClick={() => handleVersions(project.id)}>
+                  {" "}
+                  Version
+                </button>
               </td>
-              {/* Ajoutez d'autres colonnes si nécessaire */}
-              {/* <td>{project.author}</td> */}
-              {/* <td>{project.creationDate}</td> */}
             </tr>
           ))}
         </tbody>

@@ -8,4 +8,6 @@ export const AUTH_ROUTES = {
 export const DOC_ROUTES = {
   CREATE: `${API_URL}/documents/create`,
   SELECTALL: `${API_URL}/documents/getDocuments`,
+  SELECTVERSIONS: `${API_URL}/versionControl/history/:documentId`,
+  GETSINGLEDOCUMENT: `${API_URL}/documents/getDocById/:documentId`,
 };

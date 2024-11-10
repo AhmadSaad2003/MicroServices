@@ -15,8 +15,8 @@ const SignIn: React.FC = () => {
     try {
       const response = await signIn(email, password);
       if (response.token) {
-        localStorage.setItem("token", response.token); // Store token in local storage
-        navigate("/dashboard"); // Redirect to Dashboard after successful sign-in
+        localStorage.setItem("token", response.token);
+        navigate("/dashboard");
       }
     } catch (err) {
       setError(

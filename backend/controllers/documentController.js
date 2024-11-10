@@ -1,6 +1,4 @@
-const Document = require("../models/Document");
-const VersionControl = require("../models/versionControl");
-const User = require("../models/User");
+const { Document, User, VersionControl } = require("../models");
 
 exports.createDocument = async (req, res) => {
   try {
@@ -37,7 +35,7 @@ exports.createDocument = async (req, res) => {
 exports.getAllDocumentsWithTitlesAndAuthors = async (req, res) => {
   try {
     const documents = await Document.findAll({
-      attributes: ["title", "content", "createdAt"],
+      attributes: ["id", "title", "content", "createdAt"],
       include: {
         model: User,
         attributes: ["username"],
@@ -67,6 +65,22 @@ exports.deletDocumentById = async (req, res) => {
     });
 
     res.status(200).json({ message: "Document deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getDocumentById = async (req, res) => {
+  try {
+    const { documentId } = req.params;
+    const document = await Document.findOne({
+      where: { id: documentId },
+    });
+
+    if (!document) {
+      return res.status(404).json({ message: "Document not found" });
+    }
+    res.status(200).json({ document });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

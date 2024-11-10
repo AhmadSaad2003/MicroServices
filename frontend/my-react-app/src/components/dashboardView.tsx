@@ -22,14 +22,6 @@ const Dashboard: React.FC = () => {
         >
           <span>Edit Existing Document</span>
         </button>
-
-        <button
-          className="dashboard-button"
-          style={{ backgroundImage: "url('./public/images/images.jpeg')" }}
-          onClick={() => console.log("Manage Versions")}
-        >
-          <span>Manage Versions</span>
-        </button>
       </div>
     </div>
   );

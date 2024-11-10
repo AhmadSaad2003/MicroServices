@@ -1,2 +1,99 @@
-div{
-color: black;}
+.edit-view-container {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.edit-view-title {
+    text-align: center;
+    color: #4a4a4a;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.edit-view-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-view-table th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 1em;
+    text-align: left;
+}
+
+.edit-view-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.95em;
+    text-align: left;
+}
+
+.edit-view-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.edit-view-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.edit-view-loading,
+.edit-view-error {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #666;
+}
+
+.edit-view-error {
+    color: #d9534f;
+}
+
+@media (max-width: 600px) {
+
+    .edit-view-table,
+    .edit-view-table thead,
+    .edit-view-table tbody,
+    .edit-view-table th,
+    .edit-view-table td,
+    .edit-view-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .edit-view-table th {
+        text-align: left;
+        font-size: 1em;
+    }
+
+    .edit-view-table tr {
+        margin-bottom: 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .edit-view-table td {
+        border: none;
+        padding: 8px;
+        text-align: left;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .edit-view-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 10px;
+        font-weight: bold;
+        color: #333;
+ 
+   }
+  
+}
