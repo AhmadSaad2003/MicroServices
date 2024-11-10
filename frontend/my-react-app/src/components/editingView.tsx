@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+//import io from 'socket.io-client';
 import "./editingView.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 import { getProjectById } from "../services/getDocumentsService";
 import { Project } from "../interfaces/project";
+import { saveEditing } from "../services/saveEditService";
 
 function Editing() {
   const { documentId } = useParams<{ documentId: string }>();
@@ -50,10 +52,8 @@ function Editing() {
       const parser = new DOMParser();
       const doc = parser.parseFromString(text, "text/html");
       const plainText = doc.body.textContent || "";
-
-      alert("Content saved!");
-      console.log("Saved plain content:", plainText);
-      console.log("Saved HTML content:", text);
+      saveEditing(project!.id,plainText );
+      alert("Editing  successful!");
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Saving failed. Please try again."
@@ -89,6 +89,7 @@ function Editing() {
         onChange={handleTitleChange}
         placeholder="Title..."
         style={{ display: "block", marginBottom: "10px", padding: "10px" }}
+        disabled
       />
       <button
         onClick={handleSave}

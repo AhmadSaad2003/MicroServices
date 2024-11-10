@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllVersions } from "../services/getVersionsService";
 import { Version } from "../interfaces/version";
 import { useParams } from "react-router-dom";
+import { revertVersion } from "../services/revertService";
 import "./manageVersionsView.css";
 
 const ManageVersions: React.FC = () => {
@@ -42,6 +43,11 @@ const ManageVersions: React.FC = () => {
     return <div className="manage-versions-error">{error}</div>;
   }
 
+  const hanleReversing = async (documentId: number, versionId: number) => {
+    const response = await revertVersion(documentId, versionId);
+    console.log(response);
+  }
+
   return (
     <div className="manage-versions-container">
       <h2 className="manage-versions-title">Version History</h2>
@@ -63,6 +69,9 @@ const ManageVersions: React.FC = () => {
               <td>{version.content}</td>
               <td>{new Date(version.createdAt).toLocaleString()}</td>
               <td>{new Date(version.updatedAt).toLocaleString()}</td>
+              <td>
+                <button onClick={() => hanleReversing(version.documentId, version.id)}> Reverse</button>
+              </td>
             </tr>
           ))}
         </tbody>

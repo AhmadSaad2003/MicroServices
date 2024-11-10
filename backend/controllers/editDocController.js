@@ -6,13 +6,14 @@ exports.editDocument = async (req, res) => {
   try {
     const { documentId } = req.params;
     const { content } = req.body;
+    const userId = req.userId;
 
     if (!content) {
       return res.status(400).json({ message: "Content is required" });
     }
 
     const document = await Document.findOne({
-      where: { id: documentId, userId },
+      where: { id: documentId },
     });
 
     if (!document) {

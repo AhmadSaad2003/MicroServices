@@ -10,4 +10,6 @@ export const DOC_ROUTES = {
   SELECTALL: `${API_URL}/documents/getDocuments`,
   SELECTVERSIONS: `${API_URL}/versionControl/history/:documentId`,
   GETSINGLEDOCUMENT: `${API_URL}/documents/getDocById/:documentId`,
+  REVERTVERSION: `${API_URL}/versionControl/revert`,
+  SAVEEDITING: `${API_URL}/colaborativeEditing/edit/:documentId`
 };
